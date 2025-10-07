@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link Generated Successfully - SecureShare</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fsecureshar2042back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-xl font-semibold text-text-primary">SecureShare</h1>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="file_upload.html" class="text-secondary-600 hover:text-primary transition-micro px-3 py-2 rounded-md hover:bg-secondary-100">Upload</a>
+                    <a href="file_access.html" class="text-secondary-600 hover:text-primary transition-micro px-3 py-2 rounded-md hover:bg-secondary-100">Access File</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-secondary-600 hover:text-primary transition-micro p-2">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Success Header -->
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-2xl text-accent-600"></i>
+            </div>
+            <h2 class="text-3xl font-semibold text-text-primary mb-2">File Uploaded Successfully!</h2>
+            <p class="text-secondary-500">Your secure link has been generated and is ready to share</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content Area -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Secure Link Section -->
+                <div class="card">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-medium text-text-primary">Your Secure Link</h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-700">
+                                <i class="fas fa-shield-alt mr-1"></i>
+                                Encrypted
+                            </span>
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-700">
+                                <i class="fas fa-lock mr-1"></i>
+                                Protected
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <input type="text" id="secureLink" value="https://secureshare.app/f/a7b9c2d4e5f6g7h8i9j0k1l2m3n4o5p6" readonly class="form-input pr-24 font-mono text-sm bg-secondary-50" />
+                        <div class="absolute inset-y-0 right-0 flex items-center space-x-2 pr-3">
+                            <button id="copyLinkBtn" class="inline-flex items-center px-3 py-1 bg-primary text-white text-sm rounded-md hover:bg-primary-700 transition-micro">
+                                <i class="fas fa-copy mr-1"></i>
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Copy Success Message -->
+                    <div id="copySuccess" class="hidden mt-2 flex items-center text-sm text-accent-600">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        Link copied to clipboard!
+                    </div>
+                </div>
+
+                <!-- File Details -->
+                <div class="card">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">File Details</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between py-3 border-b border-secondary-100 last:border-b-0">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-error-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-file-pdf text-error-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-text-primary">Project_Proposal_Final.pdf</p>
+                                    <p class="text-xs text-secondary-500">2.4 MB • Uploaded Oct 6, 2025 at 8:40 PM</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-700">
+                                    <i class="fas fa-check mr-1"></i>
+                                    Active
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expiry Countdown -->
+                <div class="card">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-medium text-text-primary">Link Expiry</h3>
+                        <button class="text-primary hover:text-primary-700 text-sm font-medium transition-micro">
+                            <i class="fas fa-clock mr-1"></i>
+                            Extend Time
+                        </button>
+                    </div>
+                    
+                    <div class="bg-secondary-50 rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm text-secondary-600">Time Remaining</span>
+                            <span id="expiryStatus" class="text-sm font-medium text-accent-600">Active</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-4 gap-4 text-center">
+                            <div class="bg-surface rounded-lg p-3">
+                                <div id="daysLeft" class="text-2xl font-semibold text-text-primary">6</div>
+                                <div class="text-xs text-secondary-500">Days</div>
+                            </div>
+                            <div class="bg-surface rounded-lg p-3">
+                                <div id="hoursLeft" class="text-2xl font-semibold text-text-primary">23</div>
+                                <div class="text-xs text-secondary-500">Hours</div>
+                            </div>
+                            <div class="bg-surface rounded-lg p-3">
+                                <div id="minutesLeft" class="text-2xl font-semibold text-text-primary">19</div>
+                                <div class="text-xs text-secondary-500">Minutes</div>
+                            </div>
+                            <div class="bg-surface rounded-lg p-3">
+                                <div id="secondsLeft" class="text-2xl font-semibold text-text-primary">42</div>
+                                <div class="text-xs text-secondary-500">Seconds</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <div class="flex items-center justify-between text-xs text-secondary-500 mb-1">
+                                <span>Expires on Oct 13, 2025 at 8:40 PM</span>
+                                <span>7 days total</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2">
+                                <div class="bg-accent-500 h-2 rounded-full transition-smooth" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sharing Panel -->
+                <div class="card">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Share Your Link</h3>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <button class="flex flex-col items-center p-4 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-micro">
+                            <i class="fas fa-envelope text-2xl text-primary mb-2"></i>
+                            <span class="text-sm font-medium text-text-primary">Email</span>
+                        </button>
+                        <button class="flex flex-col items-center p-4 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-micro">
+                            <i class="fas fa-comment text-2xl text-accent-600 mb-2"></i>
+                            <span class="text-sm font-medium text-text-primary">Message</span>
+                        </button>
+                        <button class="flex flex-col items-center p-4 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-micro">
+                            <i class="fab fa-whatsapp text-2xl text-accent-600 mb-2"></i>
+                            <span class="text-sm font-medium text-text-primary">WhatsApp</span>
+                        </button>
+                        <button class="flex flex-col items-center p-4 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-micro">
+                            <i class="fas fa-share-alt text-2xl text-secondary-600 mb-2"></i>
+                            <span class="text-sm font-medium text-text-primary">More</span>
+                        </button>
+                    </div>
+
+                    <!-- Pre-populated Message -->
+                    <div class="bg-secondary-50 rounded-lg p-4">
+                        <label class="form-label">Share Message</label>
+                        <textarea class="form-input resize-none" rows="3" readonly>Hi! I've shared a secure file with you. Access it using this link: https://secureshare.app/f/a7b9c2d4e5f6g7h8i9j0k1l2m3n4o5p6
+
+This link is password protected and will expire on Oct 13, 2025. Please download the file before it expires.</textarea>
+                        <button class="mt-2 text-primary hover:text-primary-700 text-sm font-medium transition-micro">
+                            <i class="fas fa-copy mr-1"></i>
+                            Copy Message
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="file_upload.html" class="btn-primary flex-1 text-center">
+                        <i class="fas fa-plus mr-2"></i>
+                        Upload Another File
+                    </a>
+                    <button class="btn-secondary">
+                        <i class="fas fa-download mr-2"></i>
+                        Download QR Code
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- QR Code -->
+                <div class="card text-center">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">QR Code</h3>
+                    <div class="bg-surface border-2 border-secondary-200 rounded-lg p-4 mb-4 inline-block">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://secureshare.app/f/a7b9c2d4e5f6g7h8i9j0k1l2m3n4o5p6" alt="QR Code for secure link" class="w-32 h-32" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    </div>
+                    <p class="text-xs text-secondary-500 mb-4">Scan with mobile device to access link</p>
+                    <button class="btn-secondary w-full">
+                        <i class="fas fa-download mr-2"></i>
+                        Download QR
+                    </button>
+                </div>
+
+                <!-- Link Management -->
+                <div class="card">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Link Management</h3>
+                    <div class="space-y-3">
+                        <button class="w-full flex items-center justify-between p-3 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-micro">
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-line text-primary mr-3"></i>
+                                <span class="text-sm font-medium text-text-primary">View Access Log</span>
+                            </div>
+                            <i class="fas fa-chevron-right text-secondary-400"></i>
+                        </button>
+                        
+                        <button class="w-full flex items-center justify-between p-3 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-micro">
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-warning-600 mr-3"></i>
+                                <span class="text-sm font-medium text-text-primary">Extend Expiry</span>
+                            </div>
+                            <i class="fas fa-chevron-right text-secondary-400"></i>
+                        </button>
+                        
+                        <button class="w-full flex items-center justify-between p-3 bg-error-50 rounded-lg hover:bg-error-100 transition-micro text-error-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-trash-alt text-error-600 mr-3"></i>
+                                <span class="text-sm font-medium">Emergency Delete</span>
+                            </div>
+                            <i class="fas fa-chevron-right text-error-400"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Security Information -->
+                <div class="card">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Security Details</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-accent-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-accent-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">AES-256 Encryption</p>
+                                <p class="text-xs text-secondary-500">Military-grade security</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-key text-primary-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Password Protected</p>
+                                <p class="text-xs text-secondary-500">Strong password required</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-warning-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-clock text-warning-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Auto-Expiry</p>
+                                <p class="text-xs text-secondary-500">Automatic deletion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Access Statistics -->
+                <div class="card">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Access Statistics</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-secondary-600">Total Views</span>
+                            <span class="text-sm font-medium text-text-primary">0</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-secondary-600">Downloads</span>
+                            <span class="text-sm font-medium text-text-primary">0</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-secondary-600">Last Access</span>
+                            <span class="text-sm font-medium text-secondary-500">Never</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-secondary-600">Created</span>
+                            <span class="text-sm font-medium text-text-primary">Just now</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-secondary-200 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-secondary-500 text-sm">© 2025 SecureShare. All Rights Reserved.</p>
+                <div class="mt-2 flex justify-center items-center space-x-4">
+                    <span class="inline-flex items-center text-xs text-accent-600">
+                        <i class="fas fa-shield-alt mr-1"></i>
+                        SSL Secured
+                    </span>
+                    <span class="inline-flex items-center text-xs text-accent-600">
+                        <i class="fas fa-lock mr-1"></i>
+                        256-bit Encryption
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Copy link functionality
+        const copyLinkBtn = document.getElementById('copyLinkBtn');
+        const secureLink = document.getElementById('secureLink');
+        const copySuccess = document.getElementById('copySuccess');
+
+        copyLinkBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(secureLink.value);
+                
+                // Show success message
+                copySuccess.classList.remove('hidden');
+                copyLinkBtn.innerHTML = '<i class="fas fa-check mr-1"></i>Copied!';
+                copyLinkBtn.classList.add('bg-accent-600', 'hover:bg-accent-700');
+                copyLinkBtn.classList.remove('bg-primary', 'hover:bg-primary-700');
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    copySuccess.classList.add('hidden');
+                    copyLinkBtn.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy';
+                    copyLinkBtn.classList.remove('bg-accent-600', 'hover:bg-accent-700');
+                    copyLinkBtn.classList.add('bg-primary', 'hover:bg-primary-700');
+                }, 3000);
+                
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                // Fallback for older browsers
+                secureLink.select();
+                document.execCommand('copy');
+                copySuccess.classList.remove('hidden');
+            }
+        });
+
+        // Countdown timer functionality
+        function updateCountdown() {
+            // Set expiry date (7 days from now for demo)
+            const expiryDate = new Date();
+            expiryDate.setDate(expiryDate.getDate() + 7);
+            expiryDate.setHours(20, 40, 0, 0); // Set to 8:40 PM
+            
+            const now = new Date().getTime();
+            const distance = expiryDate.getTime() - now;
+            
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('daysLeft').textContent = days;
+                document.getElementById('hoursLeft').textContent = hours;
+                document.getElementById('minutesLeft').textContent = minutes;
+                document.getElementById('secondsLeft').textContent = seconds;
+                
+                // Update status based on time remaining
+                const expiryStatus = document.getElementById('expiryStatus');
+                if (days < 1) {
+                    expiryStatus.textContent = 'Expires Soon';
+                    expiryStatus.className = 'text-sm font-medium text-warning-600';
+                } else if (days < 2) {
+                    expiryStatus.textContent = 'Expires Tomorrow';
+                    expiryStatus.className = 'text-sm font-medium text-warning-600';
+                } else {
+                    expiryStatus.textContent = 'Active';
+                    expiryStatus.className = 'text-sm font-medium text-accent-600';
+                }
+            } else {
+                // Expired
+                document.getElementById('expiryStatus').textContent = 'Expired';
+                document.getElementById('expiryStatus').className = 'text-sm font-medium text-error-600';
+            }
+        }
+
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Share functionality
+        const shareButtons = document.querySelectorAll('.card button');
+        shareButtons.forEach(button => {
+            if (button.textContent.includes('Email') || 
+                button.textContent.includes('Message') || 
+                button.textContent.includes('WhatsApp') || 
+                button.textContent.includes('More')) {
+                
+                button.addEventListener('click', () => {
+                    const shareData = {
+                        title: 'Secure File Share',
+                        text: 'I\'ve shared a secure file with you. Access it using this link:',
+                        url: secureLink.value
+                    };
+                    
+                    if (navigator.share && button.textContent.includes('More')) {
+                        navigator.share(shareData);
+                    } else if (button.textContent.includes('Email')) {
+                        const subject = encodeURIComponent('Secure File Share');
+                        const body = encodeURIComponent(`Hi! I've shared a secure file with you. Access it using this link: ${secureLink.value}\n\nThis link is password protected and will expire on Oct 13, 2025. Please download the file before it expires.`);
+                        window.open(`mailto:?subject=${subject}&body=${body}`);
+                    } else if (button.textContent.includes('WhatsApp')) {
+                        const text = encodeURIComponent(`Hi! I've shared a secure file with you. Access it using this link: ${secureLink.value}`);
+                        window.open(`https://wa.me/?text=${text}`);
+                    }
+                });
+            }
+        });
+
+        // Copy message functionality
+        const copyMessageBtn = document.querySelector('button[onclick*="Copy Message"]');
+        if (copyMessageBtn) {
+            copyMessageBtn.addEventListener('click', async () => {
+                const textarea = document.querySelector('textarea');
+                try {
+                    await navigator.clipboard.writeText(textarea.value);
+                    copyMessageBtn.innerHTML = '<i class="fas fa-check mr-1"></i>Copied!';
+                    setTimeout(() => {
+                        copyMessageBtn.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy Message';
+                    }, 2000);
+                } catch (err) {
+                    textarea.select();
+                    document.execCommand('copy');
+                }
+            });
+        }
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload - SecureShare</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fsecureshar2042back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-xl font-semibold text-text-primary">SecureShare</h1>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="file_upload.html" class="text-primary font-medium px-3 py-2 rounded-md bg-primary-50">Upload</a>
+                    <a href="file_access.html" class="text-secondary-600 hover:text-primary transition-micro px-3 py-2 rounded-md hover:bg-secondary-100">Access File</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-secondary-600 hover:text-primary transition-micro p-2">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Upload Section -->
+            <div class="lg:col-span-2">
+                <!-- Page Header -->
+                <div class="mb-8">
+                    <h2 class="text-3xl font-semibold text-text-primary mb-2">Upload Files Securely</h2>
+                    <p class="text-secondary-500">Share files temporarily with password protection and automatic expiry</p>
+                </div>
+
+                <!-- Drag and Drop Zone -->
+                <div class="card mb-6">
+                    <div id="dropzone" class="border-2 border-dashed border-secondary-300 rounded-xl p-12 text-center hover:border-primary-400 transition-smooth cursor-pointer bg-secondary-50 hover:bg-primary-50">
+                        <div class="mb-4">
+                            <i class="fas fa-cloud-upload-alt text-6xl text-secondary-400 mb-4"></i>
+                        </div>
+                        <h3 class="text-xl font-medium text-text-primary mb-2">Drag & drop files here</h3>
+                        <p class="text-secondary-500 mb-4">or click to browse from your device</p>
+                        <button type="button" class="btn-primary">
+                            <i class="fas fa-folder-open mr-2"></i>
+                            Browse Files
+                        </button>
+                        <input type="file" id="fileInput" multiple class="hidden" accept=".pdf,.docx,.doc,.jpg,.jpeg,.png,.gif,.txt,.zip" />
+                    </div>
+
+                    <!-- File Type Support -->
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-100 text-secondary-700">
+                            <i class="fas fa-file-pdf mr-1 text-error-600"></i> PDF
+                        </span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-100 text-secondary-700">
+                            <i class="fas fa-file-word mr-1 text-primary-600"></i> DOCX
+                        </span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-100 text-secondary-700">
+                            <i class="fas fa-file-image mr-1 text-accent-600"></i> Images
+                        </span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-100 text-secondary-700">
+                            <i class="fas fa-file-archive mr-1 text-warning-600"></i> ZIP
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Upload Configuration -->
+                <div class="card">
+                    <h3 class="text-lg font-medium text-text-primary mb-6">Security Settings</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Password Protection -->
+                        <div>
+                            <label class="form-label">
+                                <i class="fas fa-lock mr-2 text-primary"></i>
+                                Password Protection
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="filePassword" class="form-input pr-12" placeholder="Enter a strong password" />
+                                <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                    <i class="fas fa-eye text-secondary-400 hover:text-secondary-600 transition-micro"></i>
+                                </button>
+                            </div>
+                            <!-- Password Strength Indicator -->
+                            <div class="mt-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="flex-1 bg-secondary-200 rounded-full h-2">
+                                        <div id="passwordStrength" class="h-2 rounded-full transition-smooth bg-error-500" style="width: 0%"></div>
+                                    </div>
+                                    <span id="strengthText" class="text-xs text-secondary-500">Enter password</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expiry Time -->
+                        <div>
+                            <label class="form-label">
+                                <i class="fas fa-clock mr-2 text-primary"></i>
+                                File Expiry Time
+                            </label>
+                            <select id="expiryTime" class="form-input">
+                                <option value="24h">24 Hours</option>
+                                <option value="7d" selected>7 Days</option>
+                                <option value="30d">30 Days</option>
+                                <option value="custom">Custom Duration</option>
+                            </select>
+                        </div>
+
+                        <!-- Custom Duration (Hidden by default) -->
+                        <div id="customDuration" class="hidden">
+                            <label class="form-label">Custom Duration</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="number" id="customDays" class="form-input" placeholder="Days" min="1" max="365" />
+                                <input type="number" id="customHours" class="form-input" placeholder="Hours" min="0" max="23" />
+                            </div>
+                        </div>
+
+                        <!-- File Size Limit Info -->
+                        <div class="bg-secondary-50 rounded-lg p-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-info-circle text-primary mr-2"></i>
+                                <span class="text-sm text-secondary-700">Maximum file size: 100MB per file, 500MB total</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Progress (Hidden by default) -->
+                <div id="uploadProgress" class="card mt-6 hidden">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Upload Progress</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-secondary-600">Uploading files...</span>
+                            <span id="progressPercent" class="text-sm font-medium text-primary">0%</span>
+                        </div>
+                        <div class="w-full bg-secondary-200 rounded-full h-3">
+                            <div id="progressBar" class="bg-primary h-3 rounded-full transition-smooth" style="width: 0%"></div>
+                        </div>
+                        <div id="uploadStatus" class="text-sm text-secondary-500">Preparing upload...</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                    <button id="uploadBtn" class="btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <i class="fas fa-upload mr-2"></i>
+                        Upload & Generate Link
+                    </button>
+                    <button id="clearBtn" class="btn-secondary">
+                        <i class="fas fa-trash-alt mr-2"></i>
+                        Clear Files
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel - File Information -->
+            <div class="lg:col-span-1">
+                <!-- Security Indicators -->
+                <div class="card mb-6">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Security Features</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-accent-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-accent-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">End-to-End Encryption</p>
+                                <p class="text-xs text-secondary-500">AES-256 encryption</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-clock text-primary-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Auto-Expiry</p>
+                                <p class="text-xs text-secondary-500">Automatic deletion</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-warning-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-key text-warning-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Password Protected</p>
+                                <p class="text-xs text-secondary-500">Secure access control</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected Files -->
+                <div class="card">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Selected Files</h3>
+                    <div id="fileList" class="space-y-3">
+                        <div class="text-center py-8">
+                            <i class="fas fa-file-upload text-4xl text-secondary-300 mb-3"></i>
+                            <p class="text-secondary-500">No files selected</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Tips -->
+                <div class="card mt-6">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Upload Tips</h3>
+                    <div class="space-y-3 text-sm text-secondary-600">
+                        <div class="flex items-start">
+                            <i class="fas fa-lightbulb text-warning-500 mr-2 mt-0.5"></i>
+                            <span>Use strong passwords with mixed characters</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-lightbulb text-warning-500 mr-2 mt-0.5"></i>
+                            <span>Choose appropriate expiry times for your needs</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-lightbulb text-warning-500 mr-2 mt-0.5"></i>
+                            <span>Share links securely through encrypted channels</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-secondary-200 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-secondary-500 text-sm">© 2025 SecureShare. All Rights Reserved.</p>
+                <div class="mt-2 flex justify-center items-center space-x-4">
+                    <span class="inline-flex items-center text-xs text-accent-600">
+                        <i class="fas fa-shield-alt mr-1"></i>
+                        SSL Secured
+                    </span>
+                    <span class="inline-flex items-center text-xs text-accent-600">
+                        <i class="fas fa-lock mr-1"></i>
+                        256-bit Encryption
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // File upload functionality
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const passwordInput = document.getElementById('filePassword');
+        const togglePassword = document.getElementById('togglePassword');
+        const expirySelect = document.getElementById('expiryTime');
+        const customDuration = document.getElementById('customDuration');
+        const uploadProgress = document.getElementById('uploadProgress');
+        const progressBar = document.getElementById('progressBar');
+        const progressPercent = document.getElementById('progressPercent');
+        const uploadStatus = document.getElementById('uploadStatus');
+
+        let selectedFiles = [];
+
+        // Drag and drop functionality
+        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('border-primary-400', 'bg-primary-50');
+        });
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('border-primary-400', 'bg-primary-50');
+        });
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('border-primary-400', 'bg-primary-50');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        // Handle file selection
+        function handleFiles(files) {
+            selectedFiles = Array.from(files);
+            displayFiles();
+            updateUploadButton();
+        }
+
+        // Display selected files
+        function displayFiles() {
+            if (selectedFiles.length === 0) {
+                fileList.innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fas fa-file-upload text-4xl text-secondary-300 mb-3"></i>
+                        <p class="text-secondary-500">No files selected</p>
+                    </div>
+                `;
+                return;
+            }
+
+            fileList.innerHTML = selectedFiles.map(file => {
+                const fileSize = (file.size / 1024 / 1024).toFixed(2);
+                const fileIcon = getFileIcon(file.type);
+                return `
+                    <div class="flex items-center p-3 bg-secondary-50 rounded-lg">
+                        <div class="w-10 h-10 bg-surface rounded-lg flex items-center justify-center mr-3">
+                            <i class="${fileIcon} text-primary"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-text-primary truncate">${file.name}</p>
+                            <p class="text-xs text-secondary-500">${fileSize} MB</p>
+                        </div>
+                        <div class="ml-2">
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-700">
+                                <i class="fas fa-check mr-1"></i>
+                                Valid
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Get file icon based on type
+        function getFileIcon(type) {
+            if (type.includes('pdf')) return 'fas fa-file-pdf text-error-600';
+            if (type.includes('word') || type.includes('document')) return 'fas fa-file-word text-primary-600';
+            if (type.includes('image')) return 'fas fa-file-image text-accent-600';
+            if (type.includes('zip') || type.includes('archive')) return 'fas fa-file-archive text-warning-600';
+            return 'fas fa-file text-secondary-600';
+        }
+
+        // Password strength validation
+        passwordInput.addEventListener('input', (e) => {
+            const password = e.target.value;
+            const strength = calculatePasswordStrength(password);
+            updatePasswordStrength(strength);
+            updateUploadButton();
+        });
+
+        function calculatePasswordStrength(password) {
+            let score = 0;
+            if (password.length >= 8) score += 25;
+            if (/[a-z]/.test(password)) score += 25;
+            if (/[A-Z]/.test(password)) score += 25;
+            if (/[0-9]/.test(password)) score += 25;
+            if (/[^A-Za-z0-9]/.test(password)) score += 25;
+            return Math.min(score, 100);
+        }
+
+        function updatePasswordStrength(strength) {
+            const strengthBar = document.getElementById('passwordStrength');
+            const strengthText = document.getElementById('strengthText');
+            
+            strengthBar.style.width = `${strength}%`;
+            
+            if (strength === 0) {
+                strengthBar.className = 'h-2 rounded-full transition-smooth bg-secondary-300';
+                strengthText.textContent = 'Enter password';
+                strengthText.className = 'text-xs text-secondary-500';
+            } else if (strength < 50) {
+                strengthBar.className = 'h-2 rounded-full transition-smooth bg-error-500';
+                strengthText.textContent = 'Weak';
+                strengthText.className = 'text-xs text-error-600';
+            } else if (strength < 75) {
+                strengthBar.className = 'h-2 rounded-full transition-smooth bg-warning-500';
+                strengthText.textContent = 'Medium';
+                strengthText.className = 'text-xs text-warning-600';
+            } else {
+                strengthBar.className = 'h-2 rounded-full transition-smooth bg-accent-500';
+                strengthText.textContent = 'Strong';
+                strengthText.className = 'text-xs text-accent-600';
+            }
+        }
+
+        // Toggle password visibility
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            const icon = togglePassword.querySelector('i');
+            icon.className = type === 'password' ? 'fas fa-eye text-secondary-400 hover:text-secondary-600 transition-micro' : 'fas fa-eye-slash text-secondary-400 hover:text-secondary-600 transition-micro';
+        });
+
+        // Expiry time handling
+        expirySelect.addEventListener('change', (e) => {
+            if (e.target.value === 'custom') {
+                customDuration.classList.remove('hidden');
+            } else {
+                customDuration.classList.add('hidden');
+            }
+        });
+
+        // Update upload button state
+        function updateUploadButton() {
+            const hasFiles = selectedFiles.length > 0;
+            const hasPassword = passwordInput.value.length >= 6;
+            uploadBtn.disabled = !(hasFiles && hasPassword);
+        }
+
+        // Clear files
+        clearBtn.addEventListener('click', () => {
+            selectedFiles = [];
+            fileInput.value = '';
+            displayFiles();
+            updateUploadButton();
+        });
+
+        // Upload functionality
+        uploadBtn.addEventListener('click', () => {
+            if (selectedFiles.length === 0 || passwordInput.value.length < 6) return;
+            
+            // Show progress
+            uploadProgress.classList.remove('hidden');
+            uploadBtn.disabled = true;
+            
+            // Simulate upload progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Redirect to success page after completion
+                    setTimeout(() => {
+                        window.location.href = 'link_generation_success.html';
+                    }, 1000);
+                }
+                
+                progressBar.style.width = `${progress}%`;
+                progressPercent.textContent = `${Math.round(progress)}%`;
+                
+                if (progress < 30) {
+                    uploadStatus.textContent = 'Encrypting files...';
+                } else if (progress < 60) {
+                    uploadStatus.textContent = 'Uploading to secure server...';
+                } else if (progress < 90) {
+                    uploadStatus.textContent = 'Generating secure link...';
+                } else {
+                    uploadStatus.textContent = 'Upload complete!';
+                }
+            }, 200);
+        });
+
+        // Initialize
+        updateUploadButton();
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

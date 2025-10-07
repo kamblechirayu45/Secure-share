@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Access - SecureShare</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fsecureshar2042back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-xl font-semibold text-text-primary">SecureShare</h1>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="file_upload.html" class="text-secondary-600 hover:text-primary transition-micro px-3 py-2 rounded-md hover:bg-secondary-100">Upload</a>
+                    <a href="file_access.html" class="text-primary font-medium px-3 py-2 rounded-md bg-primary-50">Access File</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-secondary-600 hover:text-primary transition-micro p-2">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- File Access Section -->
+            <div class="lg:col-span-2">
+                <!-- Page Header -->
+                <div class="mb-8">
+                    <h2 class="text-3xl font-semibold text-text-primary mb-2">Secure File Access</h2>
+                    <p class="text-secondary-500">Enter the password to access your shared file</p>
+                </div>
+
+                <!-- File Information Card -->
+                <div class="card mb-6">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-file-pdf text-2xl text-error-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-text-primary mb-1">Project_Proposal_Final.pdf</h3>
+                                <div class="flex items-center space-x-4 text-sm text-secondary-500">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-weight-hanging mr-1"></i>
+                                        2.4 MB
+                                    </span>
+                                    <span class="flex items-center">
+                                        <i class="fas fa-calendar mr-1"></i>
+                                        Uploaded Oct 6, 2025
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Security Badge -->
+                        <div class="flex flex-col items-end space-y-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-700">
+                                <i class="fas fa-shield-alt mr-1"></i>
+                                Encrypted
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-warning-100 text-warning-700">
+                                <i class="fas fa-lock mr-1"></i>
+                                Password Protected
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Expiry Countdown -->
+                    <div class="bg-warning-50 border border-warning-200 rounded-lg p-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-warning-600 mr-2"></i>
+                                <span class="text-sm font-medium text-warning-700">File expires in:</span>
+                            </div>
+                            <div id="countdown" class="text-lg font-semibold text-warning-700">
+                                6d 14h 32m 15s
+                            </div>
+                        </div>
+                        <div class="mt-2 w-full bg-warning-200 rounded-full h-2">
+                            <div class="bg-warning-600 h-2 rounded-full transition-smooth" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                    <!-- File Preview -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-medium text-text-primary mb-3">File Preview</h4>
+                        <div class="bg-secondary-50 rounded-lg p-8 text-center border-2 border-dashed border-secondary-300">
+                            <i class="fas fa-file-pdf text-4xl text-error-600 mb-3"></i>
+                            <p class="text-secondary-600 mb-2">PDF Document Preview</p>
+                            <p class="text-sm text-secondary-500">Enter password to view file contents</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Access Form -->
+                <div class="card">
+                    <h3 class="text-lg font-medium text-text-primary mb-6">Enter Access Password</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Password Input -->
+                        <div>
+                            <label class="form-label">
+                                <i class="fas fa-key mr-2 text-primary"></i>
+                                File Password
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="accessPassword" class="form-input pr-12" placeholder="Enter file password" />
+                                <button type="button" id="toggleAccessPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                    <i class="fas fa-eye text-secondary-400 hover:text-secondary-600 transition-micro"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Password Attempts Warning -->
+                            <div id="attemptsWarning" class="mt-2 hidden">
+                                <div class="flex items-center text-sm text-warning-600">
+                                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                                    <span id="attemptsText">2 attempts remaining</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Error Message -->
+                            <div id="passwordError" class="mt-2 hidden">
+                                <div class="flex items-center text-sm text-error-600">
+                                    <i class="fas fa-times-circle mr-2"></i>
+                                    <span>Incorrect password. Please try again.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Access Actions -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button id="accessBtn" class="btn-primary flex-1">
+                                <i class="fas fa-unlock mr-2"></i>
+                                Access File
+                            </button>
+                            <button id="previewBtn" class="btn-secondary" disabled>
+                                <i class="fas fa-eye mr-2"></i>
+                                Preview
+                            </button>
+                        </div>
+
+                        <!-- Download Progress (Hidden by default) -->
+                        <div id="downloadProgress" class="hidden">
+                            <div class="bg-primary-50 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-primary-700">Preparing download...</span>
+                                    <span id="downloadPercent" class="text-sm font-medium text-primary-700">0%</span>
+                                </div>
+                                <div class="w-full bg-primary-200 rounded-full h-2">
+                                    <div id="downloadBar" class="bg-primary-600 h-2 rounded-full transition-smooth" style="width: 0%"></div>
+                                </div>
+                                <div id="downloadStatus" class="text-xs text-primary-600 mt-1">Verifying file integrity...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Request New Link -->
+                <div class="card mt-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="text-lg font-medium text-text-primary mb-1">Need a new link?</h4>
+                            <p class="text-sm text-secondary-500">If your link has expired or you're having trouble accessing the file</p>
+                        </div>
+                        <button class="btn-secondary">
+                            <i class="fas fa-refresh mr-2"></i>
+                            Request New Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Access Information -->
+            <div class="lg:col-span-1">
+                <!-- Security Status -->
+                <div class="card mb-6">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Security Status</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-accent-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-accent-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">SSL Encrypted</p>
+                                <p class="text-xs text-secondary-500">Secure connection verified</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-lock text-primary-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Password Protected</p>
+                                <p class="text-xs text-secondary-500">Access control enabled</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-warning-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-clock text-warning-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Time Limited</p>
+                                <p class="text-xs text-secondary-500">Auto-expires after deadline</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Access Attempts -->
+                <div class="card mb-6">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Access History</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-accent-500 rounded-full mr-3"></div>
+                                <div>
+                                    <p class="text-sm font-medium text-text-primary">Current Session</p>
+                                    <p class="text-xs text-secondary-500">Oct 6, 2025 8:40 PM</p>
+                                </div>
+                            </div>
+                            <span class="text-xs text-accent-600 font-medium">Active</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-secondary-400 rounded-full mr-3"></div>
+                                <div>
+                                    <p class="text-sm font-medium text-text-primary">Previous Access</p>
+                                    <p class="text-xs text-secondary-500">Oct 5, 2025 3:22 PM</p>
+                                </div>
+                            </div>
+                            <span class="text-xs text-secondary-500 font-medium">Success</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Download Information -->
+                <div class="card">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Download Info</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-secondary-600">File Size:</span>
+                            <span class="font-medium text-text-primary">2.4 MB</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-secondary-600">File Type:</span>
+                            <span class="font-medium text-text-primary">PDF Document</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-secondary-600">Downloads:</span>
+                            <span class="font-medium text-text-primary">1 of 5 allowed</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-secondary-600">Expires:</span>
+                            <span class="font-medium text-warning-600">Oct 13, 2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-4 border-t border-secondary-200">
+                        <div class="flex items-center text-sm text-secondary-600">
+                            <i class="fas fa-info-circle mr-2 text-primary"></i>
+                            <span>File will be permanently deleted after expiry</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Help Section -->
+                <div class="card mt-6">
+                    <h3 class="text-lg font-medium text-text-primary mb-4">Need Help?</h3>
+                    <div class="space-y-3 text-sm text-secondary-600">
+                        <div class="flex items-start">
+                            <i class="fas fa-question-circle text-primary mr-2 mt-0.5"></i>
+                            <span>Contact the sender if you don't have the password</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-question-circle text-primary mr-2 mt-0.5"></i>
+                            <span>Check your email for the original share link</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-question-circle text-primary mr-2 mt-0.5"></i>
+                            <span>Ensure you have sufficient storage space</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-secondary-200 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-secondary-500 text-sm">© 2025 SecureShare. All Rights Reserved.</p>
+                <div class="mt-2 flex justify-center items-center space-x-4">
+                    <span class="inline-flex items-center text-xs text-accent-600">
+                        <i class="fas fa-shield-alt mr-1"></i>
+                        SSL Secured
+                    </span>
+                    <span class="inline-flex items-center text-xs text-accent-600">
+                        <i class="fas fa-lock mr-1"></i>
+                        256-bit Encryption
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // File access functionality
+        const accessPassword = document.getElementById('accessPassword');
+        const toggleAccessPassword = document.getElementById('toggleAccessPassword');
+        const accessBtn = document.getElementById('accessBtn');
+        const previewBtn = document.getElementById('previewBtn');
+        const passwordError = document.getElementById('passwordError');
+        const attemptsWarning = document.getElementById('attemptsWarning');
+        const attemptsText = document.getElementById('attemptsText');
+        const downloadProgress = document.getElementById('downloadProgress');
+        const downloadBar = document.getElementById('downloadBar');
+        const downloadPercent = document.getElementById('downloadPercent');
+        const downloadStatus = document.getElementById('downloadStatus');
+        const countdown = document.getElementById('countdown');
+
+        let attemptCount = 0;
+        const maxAttempts = 3;
+        const correctPassword = "SecureFile123!"; // Mock password for demo
+
+        // Toggle password visibility
+        toggleAccessPassword.addEventListener('click', () => {
+            const type = accessPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            accessPassword.setAttribute('type', type);
+            const icon = toggleAccessPassword.querySelector('i');
+            icon.className = type === 'password' ? 'fas fa-eye text-secondary-400 hover:text-secondary-600 transition-micro' : 'fas fa-eye-slash text-secondary-400 hover:text-secondary-600 transition-micro';
+        });
+
+        // Password input validation
+        accessPassword.addEventListener('input', () => {
+            passwordError.classList.add('hidden');
+            if (accessPassword.value.length > 0) {
+                accessBtn.disabled = false;
+                accessBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                accessBtn.disabled = true;
+                accessBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        });
+
+        // Access file functionality
+        accessBtn.addEventListener('click', () => {
+            const password = accessPassword.value;
+            
+            if (password === correctPassword) {
+                // Successful access
+                passwordError.classList.add('hidden');
+                attemptsWarning.classList.add('hidden');
+                
+                // Enable preview button
+                previewBtn.disabled = false;
+                previewBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                
+                // Start download process
+                startDownload();
+            } else {
+                // Failed access
+                attemptCount++;
+                passwordError.classList.remove('hidden');
+                
+                if (attemptCount < maxAttempts) {
+                    const remaining = maxAttempts - attemptCount;
+                    attemptsText.textContent = `${remaining} attempt${remaining === 1 ? '' : 's'} remaining`;
+                    attemptsWarning.classList.remove('hidden');
+                } else {
+                    // Max attempts reached
+                    accessBtn.disabled = true;
+                    accessBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    accessPassword.disabled = true;
+                    passwordError.innerHTML = `
+                        <div class="flex items-center text-sm text-error-600">
+                            <i class="fas fa-ban mr-2"></i>
+                            <span>Maximum attempts exceeded. Please request a new link.</span>
+                        </div>
+                    `;
+                    attemptsWarning.classList.add('hidden');
+                }
+                
+                // Clear password field
+                accessPassword.value = '';
+            }
+        });
+
+        // Preview functionality
+        previewBtn.addEventListener('click', () => {
+            // Simulate file preview
+            const previewArea = document.querySelector('.bg-secondary-50.rounded-lg.p-8');
+            previewArea.innerHTML = `
+                <div class="bg-surface rounded-lg p-6 border border-secondary-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-medium text-text-primary">Project Proposal Final</h4>
+                        <span class="text-xs text-secondary-500">Page 1 of 15</span>
+                    </div>
+                    <div class="text-sm text-secondary-700 space-y-2">
+                        <p><strong>Executive Summary</strong></p>
+                        <p>This document outlines the comprehensive project proposal for the digital transformation initiative...</p>
+                        <p><strong>Project Objectives</strong></p>
+                        <p>• Implement modern web technologies</p>
+                        <p>• Enhance user experience and accessibility</p>
+                        <p>• Improve system security and performance</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-secondary-200 text-center">
+                        <button class="btn-primary text-sm">
+                            <i class="fas fa-download mr-2"></i>
+                            Download Full Document
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Download simulation
+        function startDownload() {
+            downloadProgress.classList.remove('hidden');
+            accessBtn.disabled = true;
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Complete download
+                    downloadStatus.textContent = 'Download ready!';
+                    setTimeout(() => {
+                        // Simulate file download
+                        const link = document.createElement('a');
+                        link.href = 'data:application/pdf;base64,JVBERi0xLjQKJdPr6eEKMSAwIG9iago8PAovVGl0bGUgKFByb2plY3QgUHJvcG9zYWwgRmluYWwpCi9Qcm9kdWNlciAoU2VjdXJlU2hhcmUpCi9DcmVhdGlvbkRhdGUgKEQ6MjAyNTEwMDYyMDQwMTkpCj4+CmVuZG9iago=';
+                        link.download = 'Project_Proposal_Final.pdf';
+                        link.click();
+                        
+                        // Reset UI
+                        setTimeout(() => {
+                            downloadProgress.classList.add('hidden');
+                            accessBtn.disabled = false;
+                            downloadBar.style.width = '0%';
+                            downloadPercent.textContent = '0%';
+                            downloadStatus.textContent = 'Verifying file integrity...';
+                        }, 2000);
+                    }, 1000);
+                }
+                
+                downloadBar.style.width = `${progress}%`;
+                downloadPercent.textContent = `${Math.round(progress)}%`;
+                
+                if (progress < 30) {
+                    downloadStatus.textContent = 'Verifying file integrity...';
+                } else if (progress < 60) {
+                    downloadStatus.textContent = 'Decrypting file...';
+                } else if (progress < 90) {
+                    downloadStatus.textContent = 'Preparing download...';
+                } else {
+                    downloadStatus.textContent = 'Download starting...';
+                }
+            }, 300);
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            // Mock countdown - in real app this would be calculated from expiry date
+            const now = new Date();
+            const expiry = new Date(now.getTime() + (6 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000) + (32 * 60 * 1000) + (15 * 1000));
+            const diff = expiry - now;
+            
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                countdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                countdown.textContent = 'Expired';
+                countdown.className = 'text-lg font-semibold text-error-700';
+            }
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Initialize
+        accessBtn.disabled = true;
+        accessBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
